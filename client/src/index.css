@@ -1,0 +1,220 @@
+/*
+ * LUMIÈRE — ART OF SCENTS
+ * Design System: Wabi-Sabi Luxe
+ * Philosophy: Japanese Wabi-Sabi × French Minimalism × Luxury Branding
+ * Palette: Linen Beige / Antique Gold / Warm Charcoal
+ * Typography: Cormorant Garamond (display) + Noto Sans KR (body)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* Wabi-Sabi Luxe Color Palette */
+  --background: oklch(0.96 0.008 75);        /* warm linen #EDE8E0 */
+  --foreground: oklch(0.25 0.018 55);        /* warm charcoal #3D3530 */
+  --card: oklch(0.975 0.005 75);             /* cream white #F5F1EB */
+  --card-foreground: oklch(0.25 0.018 55);
+  --popover: oklch(0.975 0.005 75);
+  --popover-foreground: oklch(0.25 0.018 55);
+  --primary: oklch(0.60 0.065 65);           /* antique gold #B8975A */
+  --primary-foreground: oklch(0.975 0.005 75);
+  --secondary: oklch(0.92 0.012 75);         /* soft beige */
+  --secondary-foreground: oklch(0.35 0.018 55);
+  --muted: oklch(0.93 0.008 75);
+  --muted-foreground: oklch(0.50 0.015 60);
+  --accent: oklch(0.60 0.065 65);
+  --accent-foreground: oklch(0.975 0.005 75);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.85 0.015 70);            /* warm taupe border */
+  --input: oklch(0.90 0.010 72);
+  --ring: oklch(0.60 0.065 65);
+  --radius: 0.25rem;                         /* minimal radius for luxury feel */
+
+  /* Custom brand tokens */
+  --gold: oklch(0.60 0.065 65);
+  --gold-light: oklch(0.75 0.055 70);
+  --gold-dark: oklch(0.45 0.060 60);
+  --linen: oklch(0.96 0.008 75);
+  --cream: oklch(0.975 0.005 75);
+  --charcoal: oklch(0.25 0.018 55);
+  --taupe: oklch(0.55 0.020 65);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  a[href],
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      max-width: 1320px;
+    }
+  }
+
+  /* Typography utilities */
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-display-sc {
+    font-family: 'Cormorant SC', serif;
+  }
+
+  .font-body-kr {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .font-serif-kr {
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  /* Gold line divider */
+  .gold-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.60 0.065 65), transparent);
+  }
+
+  .gold-divider-full {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.60 0.065 65) 30%, oklch(0.60 0.065 65) 70%, transparent);
+    opacity: 0.4;
+  }
+
+  /* Section label style */
+  .section-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: oklch(0.60 0.065 65);
+    text-transform: uppercase;
+  }
+
+  /* Grain texture overlay */
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+  }
+
+  /* Marquee animation for partners */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  /* Stagger children */
+  .stagger-children > * {
+    opacity: 0;
+    animation: fadeInUp 0.7s ease-out forwards;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+}
