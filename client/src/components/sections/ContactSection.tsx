@@ -8,6 +8,7 @@ import { useReveal } from "@/hooks/useReveal";
 import { useState } from "react";
 
 const CONTACT_EMAIL = "alicia@kwellroutine.com";
+const FORMSPREE_ID = "mwvypbwg";
 
 export default function ContactSection() {
   const { ref, visible } = useReveal(0.1);
@@ -20,21 +21,35 @@ export default function ContactSection() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `[LUMIÈRE] 향 설계 문의 - ${formData.company || "미기재"}`
-    );
-    const body = encodeURIComponent(
-      `회사명: ${formData.company || "-"}\n이름: ${formData.name || "-"}\n이메일: ${formData.email || "-"}\n연락처: ${formData.phone || "-"}\n\n문의 내용:\n${formData.message || "-"}`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setSending(true);
+    setError("");
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+      }
+    } catch {
+      setError("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -209,13 +224,12 @@ export default function ContactSection() {
                       className="font-display-sc text-[0.6rem] tracking-[0.2em] block mb-2"
                       style={{ fontFamily: "'Cormorant SC', serif", color: "#8B7355" }}
                     >
-                      Company *
+                      Company
                     </label>
                     <input
                       type="text"
                       name="company"
                       placeholder="회사명"
-                      required
                       value={formData.company}
                       onChange={handleChange}
                       style={inputStyle}
@@ -324,16 +338,24 @@ export default function ContactSection() {
                   />
                 </div>
 
+                {error && (
+                  <p style={{ color: "#c0392b", fontSize: "0.8rem", fontFamily: "'Noto Sans KR', sans-serif" }}>
+                    {error}
+                  </p>
+                )}
+
                 <button
                   type="submit"
+                  disabled={sending}
                   className="font-display-sc text-[0.65rem] tracking-[0.2em] py-4 transition-all duration-300 hover:opacity-85 self-start px-12"
                   style={{
                     fontFamily: "'Cormorant SC', serif",
-                    background: "#3D3530",
+                    background: sending ? "#8B7355" : "#3D3530",
                     color: "#F5F1EB",
+                    cursor: sending ? "not-allowed" : "pointer",
                   }}
                 >
-                  문의 보내기
+                  {sending ? "전송 중..." : "문의 보내기"}
                 </button>
               </form>
             )}
