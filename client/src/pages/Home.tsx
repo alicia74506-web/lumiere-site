@@ -2,14 +2,14 @@
  * LUMIÈRE — Art of Scents
  * Main Home Page
  * Design: Wabi-Sabi Luxe — Japanese Wabi-Sabi × French Minimalism × Luxury Branding
- * Sections: Hero → About → Services → B2B → Founder → Partners → Contact → Footer
+ * Sections: Hero → About → Services → B2B → Shop → Founder → Partners → Contact → Footer
  */
-
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import B2BSection from "@/components/sections/B2BSection";
+import ShopSection from "@/components/sections/ShopSection";
 import FounderSection from "@/components/sections/FounderSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -23,6 +23,7 @@ export default function Home() {
       <AboutSection />
       <ServicesSection />
       <B2BSection />
+      <ShopSection />
       <FounderSection />
       <PartnersSection />
       <ContactSection />
