@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from "react";
 
-const HERO_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663596071276/jTgi6hjqtGYuTBYnBAYuhL/hero_main_new-Hk5yrMqBRhEednvUtuy9oN.webp";
+const HERO_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663596071276/uEHhhaZcmbupujBw.png";
 
 export default function HeroSection() {
   const [loaded, setLoaded] = useState(false);
