@@ -21,7 +21,7 @@ export default function Footer() {
                 letterSpacing: "0.08em",
               }}
             >
-              Lumiére
+              Lumière
             </span>
             <span
               className="font-display-sc text-[0.55rem] tracking-[0.35em] block mb-5"
