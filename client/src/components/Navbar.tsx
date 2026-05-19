@@ -42,7 +42,7 @@ export default function Navbar() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out ${scrolled ? "bg-[#F5F1EB]/95 backdrop-blur-sm shadow-sm border-b border-[#D4C5A9]/30" : "bg-transparent"}`}>
       <div className="container flex items-center justify-between h-16 md:h-20">
         <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex flex-col leading-none">
-          <span className="font-display text-2xl md:text-3xl tracking-widest" style={{ color: "#8B7355", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>Lumiére</span>
+          <span className="font-display text-2xl md:text-3xl tracking-widest" style={{ color: "#8B7355", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>Lumière</span>
           <span className="font-display-sc text-[0.5rem] tracking-[0.35em] mt-0.5" style={{ color: "#B8975A", fontFamily: "'Cormorant SC', serif" }}>Art of Scents</span>
         </a>
 
