@@ -1,5 +1,5 @@
 /*
- * LUMIÈRE Footer
+ * Lumière Footer
  * Design: Minimal dark footer with brand info and copyright
  * Wabi-Sabi Luxe: warm dark, gold accents, Cormorant typography
  */
