@@ -22,7 +22,7 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <img
           src={HERO_IMAGE}
-          alt="Lumiére — Art of Scents"
+          alt="Lumière — Art of Scents"
           className="w-full h-full object-cover object-center"
           style={{ opacity: loaded ? 1 : 0, transition: "opacity 1.2s ease" }}
         />
@@ -67,7 +67,7 @@ export default function HeroSection() {
               letterSpacing: "-0.01em",
             }}
           >
-            Lumiére<br />
+            Lumière<br />
           </h1>
 
           {/* Italic quote */}
